@@ -1,0 +1,46 @@
+---
+import WorkMedia from "@/components/WorkMedia.astro";
+import type { Work } from "@/data/works";
+type Props = { work: Work; index: number; variant?: "large" | "medium" };
+const { work, index, variant = "medium" } = Astro.props;
+const filmUrl = work.youtubeUrl || work.videoUrl;
+---
+
+<article class:list={["work-card", `work-card--${variant}`]}>
+  <a
+    class="work-card-link"
+    href={filmUrl || `/projects/${work.slug}/`}
+    data-youtube-url={work.youtubeUrl || undefined}
+    data-video-url={work.videoUrl || undefined}
+    data-video-title={work.title}
+    data-video-poster={work.coverImage}
+    data-preview-frames={JSON.stringify(work.previewFrames ?? [])}
+    data-preview-interval={work.previewInterval ?? 700}
+    aria-label={`${filmUrl ? "Watch film" : "View project"}: ${work.title}`}
+    aria-haspopup={filmUrl ? "dialog" : undefined}
+  >
+    <WorkMedia work={work} />
+    <div class="work-card-copy">
+      <p class="work-index">{String(index + 1).padStart(2, "0")}</p>
+      <h3>{work.title}</h3>
+      <p class="work-subtitle">{work.type}</p>
+      <dl class="work-card-meta">
+        <div>
+          <dt>Role</dt>
+          <dd>{work.role}</dd>
+        </div>
+        <div>
+          <dt>Year</dt>
+          <dd>{work.year}</dd>
+        </div>
+        <div>
+          <dt>Type</dt>
+          <dd>{work.type}</dd>
+        </div>
+      </dl>
+      <span class="project-link">
+        {filmUrl ? "Watch film" : "View project"} <span aria-hidden="true">→</span>
+      </span>
+    </div>
+  </a>
+</article>

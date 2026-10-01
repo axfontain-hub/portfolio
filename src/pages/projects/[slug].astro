@@ -1,0 +1,92 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import WorkMedia from "@/components/WorkMedia.astro";
+import { allWorks as works } from "@/data/works";
+
+export function getStaticPaths() {
+  return works.map((work) => ({
+    params: { slug: work.slug },
+    props: { work },
+  }));
+}
+
+const { work } = Astro.props;
+---
+
+<BaseLayout title={`${work.title} - Oleksandr Valko`} description={work.summary}>
+  <article class="project-page">
+    <header class="project-hero">
+      <p class="eyebrow">
+        {work.type} / {work.year}
+      </p>
+      <h1>{work.title}</h1>
+      <p>{work.summary}</p>
+    </header>
+
+    {work.vimeoUrl ? (
+      <iframe
+        class="project-video"
+        src={`https://player.vimeo.com/video/${work.vimeoUrl.split("/").pop()}?autoplay=0&dnt=1`}
+        title={work.title}
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen
+        loading="lazy"
+      />
+    ) : <WorkMedia work={work} loading="eager" />}
+    {(work.youtubeUrl || work.externalVideoUrl) && (
+      <a class="text-link" href={work.youtubeUrl || work.externalVideoUrl} target="_blank" rel="noopener noreferrer">Watch film ↗</a>
+    )}
+
+    <section class="project-details" aria-label="Project details">
+      <div>
+        <p class="eyebrow">Overview</p>
+        <p>{work.description}</p>
+      </div>
+      <dl>
+        <div>
+          <dt>Client</dt>
+          <dd>{work.client}</dd>
+        </div>
+        <div>
+          <dt>Role</dt>
+          <dd>{work.role}</dd>
+        </div>
+        <div>
+          <dt>Services</dt>
+          <dd>{work.services.join(" / ")}</dd>
+        </div>
+        {work.videoUrl && (
+          <div>
+            <dt>Film</dt>
+            <dd>
+              <a href={work.videoUrl}>Watch film</a>
+            </dd>
+          </div>
+        )}
+      </dl>
+    </section>
+
+    {work.credits && (
+      <section class="credits" aria-labelledby="credits-title">
+        <p class="eyebrow" id="credits-title">
+          Selected Notes
+        </p>
+        <ul>
+          {work.credits.map((credit) => (
+            <li>{credit}</li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </article>
+</BaseLayout>
+
+<style>
+  .project-video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    background: #111;
+  }
+</style>

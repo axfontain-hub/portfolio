@@ -1,0 +1,70 @@
+<button
+  class="back-to-top"
+  type="button"
+  aria-label="Back to top"
+  title="Back to top"
+  hidden
+>
+  <span aria-hidden="true">&#8593;</span>
+</button>
+
+<style>
+  .back-to-top {
+    position: fixed;
+    right: max(20px, env(safe-area-inset-right));
+    bottom: max(20px, env(safe-area-inset-bottom));
+    z-index: 20;
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    mix-blend-mode: difference;
+    font: inherit;
+    font-size: 24px;
+    font-weight: var(--weight-light);
+    cursor: pointer;
+    transition: opacity 150ms;
+  }
+  .back-to-top[hidden] {
+    display: none;
+  }
+  .back-to-top:hover {
+    opacity: 0.6;
+  }
+  .back-to-top:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+  body:has(dialog[open]) .back-to-top {
+    visibility: hidden;
+  }
+</style>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>(".back-to-top")!;
+  const update = () => {
+    button.hidden = window.scrollY < 80;
+  };
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("pageshow", update);
+  update();
+  button.addEventListener("click", () => {
+    const header =
+      document.querySelector<HTMLElement>("header") ||
+      document.querySelector<HTMLElement>("main");
+    if (header) {
+      if (!header.hasAttribute("tabindex")) header.tabIndex = -1;
+      header.focus({ preventScroll: true });
+    }
+    window.scrollTo({
+      top: 0,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "instant"
+        : "smooth",
+    });
+  });
+</script>

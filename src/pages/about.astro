@@ -1,0 +1,82 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Header from "@/components/Header.astro";
+import { about } from "@/data/about";
+import "@/styles/about.css";
+---
+
+<BaseLayout title="About - Oleksandr Valko" description={about.introduction} hideHeader>
+  <div class="biography">
+    <Header section="About" />
+    <section class="bio-hero" aria-labelledby="bio-heading">
+      <img class="bio-hero-image" src={about.heroImage} alt="" fetchpriority="high" />
+      <div class="bio-hero-copy">
+        <h1 id="bio-heading">About</h1>
+        <p class="bio-introduction">{about.introduction}</p>
+        <div class="bio-location">
+          <span>{about.location}</span>
+          <span>{about.since}</span>
+        </div>
+      </div>
+    </section>
+    <section class="bio-practice" aria-labelledby="practice-heading">
+      <h2 id="practice-heading" class="bio-label">
+        My Practice
+      </h2>
+      <div class="bio-practice-grid">
+        <img
+          src={about.practiceImage}
+          alt="A camera monitor on a film set"
+          loading="lazy"
+        />
+        <div class="bio-practice-copy">
+          {about.practice.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+          <ul class="bio-services">
+            {about.services.map((service) => (
+              <li>{service}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="bio-experience" aria-labelledby="experience-heading">
+      <div class="bio-section-heading">
+        <h2 id="experience-heading" class="bio-label">
+          Experience
+        </h2>
+        <span>[ 01 — {String(about.experience.length).padStart(2, "0")} ]</span>
+      </div>
+      <ol>
+        {about.experience.map((item, index) => (
+          <li>
+            <span class="bio-number">{String(index + 1).padStart(2, "0")}</span>
+            <h3>{item.title}</h3>
+            <p>{item.note}</p>
+            <span class="bio-period">{item.period}</span>
+          </li>
+        ))}
+      </ol>
+    </section>
+    <section class="bio-contact" aria-labelledby="contact-heading">
+      <div>
+        <h2 id="contact-heading" class="bio-label">
+          Let's Work Together
+        </h2>
+        <p>{about.contactStatement}</p>
+        <nav class="bio-contact-links" aria-label="Contact Oleksandr">
+          <a href={`mailto:${about.email}`}>
+            Email <span aria-hidden="true">→</span>
+          </a>
+          <a href={about.instagramUrl}>
+            Instagram <span aria-hidden="true">→</span>
+          </a>
+        </nav>
+      </div>
+      <div class="bio-contact-media">
+        <img src={about.contactImage} alt="" loading="lazy" />
+      </div>
+    </section>
+  </div>
+</BaseLayout>

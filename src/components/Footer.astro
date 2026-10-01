@@ -1,0 +1,9 @@
+---
+import { site } from "@/data/site";
+---
+
+<footer class="footer">
+  <span>© {site.year}</span>
+  <a href={`mailto:${site.email}`}>{site.name}</a>
+  <span>{site.location}</span>
+</footer>

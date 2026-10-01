@@ -1,0 +1,111 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Header from "@/components/Header.astro";
+import ArchiveDetail from "@/components/ArchiveDetail.astro";
+import { archiveWorks } from "@/data/works";
+import { archiveCategories } from "@/data/archive";
+import { site } from "@/data/site";
+import "@/styles/archive.css";
+---
+
+<BaseLayout
+  title={`Archive - ${site.name}`}
+  description={site.archiveDescription}
+  hideHeader
+>
+  <div class="archive-page" data-archive-works={JSON.stringify(archiveWorks)}>
+    <Header section="Archive" inset />
+
+    <section class="archive-intro" aria-labelledby="archive-heading">
+      <h1 id="archive-heading">Archive</h1>
+      <p class="archive-description">{site.archiveDescription}</p>
+    </section>
+
+    <div class="archive-workspace">
+      <div class="archive-list-column">
+        <div class="archive-list-toolbar">
+          <nav class="archive-filters" aria-label="Filter projects by category">
+            <button
+              type="button"
+              data-category="all"
+              aria-pressed="true"
+              aria-controls="archive-results"
+            >
+              All
+            </button>
+            {archiveCategories.map((category) => (
+              <button
+                type="button"
+                data-category={category.id}
+                aria-pressed="false"
+                aria-controls="archive-results"
+              >
+                {category.label}
+              </button>
+            ))}
+          </nav>
+          <p class="archive-counter" aria-live="polite" aria-atomic="true">
+            <span id="archive-count">{archiveWorks.length}</span>{" "}
+            <span id="archive-count-label">projects</span>
+          </p>
+        </div>
+        <section id="archive-results" aria-label="Archived projects">
+          <ol class="archive-films">
+            {archiveWorks.map((work, index) => (
+              <li class="archive-item" data-slug={work.slug}>
+                <a
+                  class="archive-film"
+                  href={`/projects/${work.slug}/`}
+                  data-project={work.slug}
+                  aria-controls="archive-detail"
+                  aria-expanded="false"
+                >
+                  <span class="archive-number">{String(index + 1).padStart(2, "0")}</span>
+                  <div class="archive-film-title">
+                    <h2 title={work.title}>{work.title}</h2>
+                    <p>{work.type}</p>
+                  </div>
+                  <span class="archive-year">{work.year}</span>
+                  <p class="archive-summary">{work.summary}</p>
+                  <dl class="archive-card-meta">
+                    <div>
+                      <dt>Role</dt>
+                      <dd>{work.role}</dd>
+                    </div>
+                    {work.client && (
+                      <div>
+                        <dt>Client</dt>
+                        <dd>{work.client}</dd>
+                      </div>
+                    )}
+                  </dl>
+                  <img
+                    class="archive-film-image"
+                    src={work.archiveImage || work.coverImage}
+                    alt=""
+                    loading={index < 3 ? "eager" : "lazy"}
+                    style={{
+                      objectPosition:
+                        work.archivePosition || work.coverPosition || "50% 50%",
+                    }}
+                  />
+                  <span class="archive-arrow" aria-hidden="true">
+                    →
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ol>
+          <p class="archive-empty" hidden>
+            No projects in this category yet.
+          </p>
+        </section>
+      </div>
+      <ArchiveDetail />
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  import "../scripts/archive";
+</script>

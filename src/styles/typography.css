@@ -1,0 +1,144 @@
+/* One scale per semantic role. Layout files should not define text sizes. */
+:root {
+  --type-display: 160px;
+  --type-hero: 100px;
+  --type-project: 56px;
+  --type-statement: 32px;
+  --type-title: 24px;
+  --type-body: 16px;
+  --type-caption: 14px;
+  --type-meta: 12px;
+}
+@media (max-width: 1100px) {
+  :root {
+    --type-display: 116px;
+    --type-hero: 80px;
+    --type-project: 44px;
+    --type-statement: 28px;
+    --type-title: 22px;
+  }
+}
+@media (max-width: 760px) {
+  :root {
+    --type-display: 68px;
+    --type-hero: 50px;
+    --type-project: 34px;
+    --type-statement: 26px;
+    --type-title: 22px;
+    --type-caption: 13px;
+    --type-meta: 11px;
+  }
+}
+@media (max-width: 380px) {
+  :root {
+    --type-display: 58px;
+    --type-hero: 42px;
+    --type-title: 20px;
+  }
+}
+body.type-system {
+  font-family: var(--font-body);
+  font-size: var(--type-body);
+  font-weight: var(--weight-regular);
+  letter-spacing: 0;
+}
+body.type-system :is(.archive-intro h1, .bio-hero h1, .archive-teaser h2) {
+  font-size: var(--type-display);
+  line-height: 0.95;
+  font-weight: var(--weight-bold);
+}
+body.type-system .hero h1 {
+  font-size: var(--type-hero);
+  line-height: 0.9;
+  font-weight: var(--weight-bold);
+}
+body.type-system :is(.project-hero h1, .page-intro h1) {
+  font-size: var(--type-project);
+  line-height: 1.08;
+  font-weight: var(--weight-regular);
+}
+body.type-system :is(.bio-introduction, .bio-contact p, .about-band h2) {
+  font-size: var(--type-statement);
+  line-height: 1.15;
+  font-weight: var(--weight-light);
+}
+body.type-system
+  :is(.work-card h3, .archive-film-title h2, .detail-copy h2, .bio-experience h3) {
+  font-size: var(--type-title);
+  line-height: 1.2;
+  font-weight: var(--weight-regular);
+  overflow-wrap: anywhere;
+}
+body.type-system
+  :is(
+    .about-copy,
+    .bio-practice-copy,
+    .archive-description,
+    .detail-description,
+    .profile-grid,
+    .project-details,
+    .project-hero > p:not(.eyebrow)
+  ) {
+  font-size: var(--type-body);
+  line-height: 1.5;
+  font-weight: var(--weight-regular);
+}
+body.type-system
+  :is(
+    .work-subtitle,
+    .archive-summary,
+    .detail-type,
+    .archive-film-title p,
+    .bio-experience li p,
+    .bio-period,
+    .plain-list,
+    .credits li
+  ) {
+  font-size: var(--type-caption);
+  line-height: 1.45;
+  font-weight: var(--weight-regular);
+}
+body.type-system
+  :is(
+    .work-card-meta,
+    .project-details dl,
+    .work-index,
+    .archive-number,
+    .archive-year,
+    .detail-meta,
+    .detail-meta dt,
+    .detail-index,
+    .detail-episode span,
+    .archive-counter,
+    .archive-filters button,
+    .section-heading,
+    .section-heading h2,
+    .eyebrow,
+    .bio-label,
+    .bio-section-heading,
+    .bio-services,
+    .bio-location,
+    .archive-categories,
+    .footer,
+    .project-link,
+    .text-link,
+    .bio-contact a,
+    .hero-note,
+    .hero-location,
+    .scroll-marker,
+    .hero h1 small,
+    .detail-error,
+    .film-error
+  ) {
+  font-size: var(--type-meta);
+  line-height: 1.4;
+  font-weight: var(--weight-regular);
+}
+body.type-system .bio-number {
+  font-size: var(--type-statement);
+  line-height: 1.15;
+  font-weight: var(--weight-light);
+}
+body.type-system :is(.work-card h3, .project-hero h1) {
+  text-transform: none;
+}

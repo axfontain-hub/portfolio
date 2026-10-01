@@ -1,0 +1,51 @@
+---
+import { site } from "@/data/site";
+import "@/styles/header.css";
+
+type Props = { section?: "Video" | "Archive" | "About" | "Project"; inset?: boolean };
+const { section = "Project", inset = false } = Astro.props;
+const index = { Video: "01", Archive: "02", About: "03", Project: "04" }[section];
+---
+
+<header
+  class:list={[
+    "masthead",
+    { "masthead--inset": inset, "masthead--dark": section === "Video" },
+  ]}
+  aria-label="Primary"
+>
+  <a class="masthead-brand" href="/" aria-label={`${site.name} home`}>
+    {site.name.split(" ").map((part) => (
+      <span>{part}</span>
+    ))}
+    <span>{site.year}</span>
+    <small>[ {index} ]</small>
+  </a>
+  <div class="masthead-discipline">
+    <p>( {section} )</p>
+    <ul>
+      {site.services.map((service) => (
+        <li>{service}</li>
+      ))}
+    </ul>
+  </div>
+  <p class="masthead-statement">
+    {site.heroStatement.map((line) => (
+      <>
+        {line}
+        <br />
+      </>
+    ))}
+  </p>
+  <nav class="masthead-nav" aria-label="Main navigation">
+    {site.nav.map((item) => (
+      <a
+        href={item.href}
+        aria-current={Astro.url.pathname === item.href ? "page" : undefined}
+      >
+        {item.label}
+      </a>
+    ))}
+    <a href="mailto:valko.oleksandr.v@gmail.com">Contact</a>
+  </nav>
+</header>

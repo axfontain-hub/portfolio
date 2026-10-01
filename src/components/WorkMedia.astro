@@ -1,0 +1,19 @@
+---
+import type { Work } from "@/data/works";
+
+type Props = {
+  work: Work;
+  loading?: "lazy" | "eager";
+};
+
+const { work, loading = "lazy" } = Astro.props;
+---
+
+<div class="work-media">
+  <img
+    src={work.coverImage}
+    alt={work.coverAlt}
+    loading={loading}
+    style={{ objectPosition: work.coverPosition ?? "50% 50%" }}
+  />
+</div>

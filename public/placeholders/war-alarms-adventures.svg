@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900">
+  <rect width="1200" height="900" fill="#171615"/>
+  <rect x="116" y="116" width="968" height="668" fill="#22211e"/>
+  <path d="M196 606h808M196 500h808M196 394h808" stroke="#f1eee6" stroke-opacity=".14" stroke-width="2"/>
+  <circle cx="332" cy="318" r="96" fill="#f1eee6" fill-opacity=".72"/>
+  <circle cx="836" cy="560" r="124" fill="#b8a46d" fill-opacity=".78"/>
+  <text x="116" y="836" fill="#f1eee6" font-family="Arial, sans-serif" font-size="44">WAR, ALARMS &amp; ADVENTURES</text>
+</svg>

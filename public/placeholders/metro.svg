@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900">
+  <rect width="1200" height="900" fill="#121212"/>
+  <g fill="none" stroke="#f1eee6" stroke-opacity=".18" stroke-width="2">
+    <path d="M120 180h960M120 360h960M120 540h960M120 720h960"/>
+    <path d="M240 96v708M480 96v708M720 96v708M960 96v708"/>
+  </g>
+  <rect x="230" y="210" width="740" height="430" fill="#b8a46d" fill-opacity=".76"/>
+  <text x="120" y="820" fill="#f1eee6" font-family="Arial, sans-serif" font-size="52">METRO</text>
+</svg>

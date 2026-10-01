@@ -1,0 +1,28 @@
+<dialog class="film-dialog" aria-label="Film">
+  <button
+    class="film-close"
+    type="button"
+    aria-label="Close video"
+    title="Close video"
+    autofocus
+  >
+    <span aria-hidden="true">×</span>
+  </button>
+  <video class="film-player" controls playsinline preload="none"></video>
+  <iframe
+    class="film-youtube"
+    title="YouTube video"
+    allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+    allowfullscreen
+    referrerpolicy="strict-origin-when-cross-origin"
+    hidden
+  ></iframe>
+  <p class="film-error" role="status" hidden>
+    This video could not be loaded.
+    <a class="film-direct-link">Open video file</a>
+  </p>
+</dialog>
+
+<script>
+  import "../scripts/work-interactions";
+</script>

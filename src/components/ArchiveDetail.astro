@@ -1,0 +1,75 @@
+<aside class="archive-detail" id="archive-detail" aria-labelledby="detail-title" hidden>
+  <div class="detail-toolbar">
+    <p class="detail-index" aria-live="polite"></p>
+    <div class="detail-controls">
+      <button
+        type="button"
+        data-detail-prev
+        aria-label="Previous project"
+        title="Previous project"
+      >
+        ←
+      </button>
+      <button
+        type="button"
+        data-detail-next
+        aria-label="Next project"
+        title="Next project"
+      >
+        →
+      </button>
+      <button
+        type="button"
+        data-detail-close
+        aria-label="Close project"
+        title="Close project"
+      >
+        ×
+      </button>
+    </div>
+  </div>
+  <div class="detail-media">
+    <img class="detail-poster" alt="" hidden />
+    <video class="detail-video" controls playsinline preload="none" hidden></video>
+    <iframe
+      class="detail-youtube"
+      title="Project video"
+      allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+      allowfullscreen
+      referrerpolicy="strict-origin-when-cross-origin"
+      hidden
+    ></iframe>
+  </div>
+  <p class="detail-error" role="status" hidden>
+    Unable to load this video. <a class="detail-direct">Open video</a>
+  </p>
+  <div class="detail-copy">
+    <div>
+      <h2 id="detail-title" tabindex="-1"></h2>
+      <p class="detail-type"></p>
+      <p class="detail-description"></p>
+      <p class="detail-tags"></p>
+      <a class="text-link detail-external" target="_blank" rel="noopener noreferrer" hidden>Watch on Vimeo ↗</a>
+    </div>
+    <dl class="detail-meta">
+      <div>
+        <dt>Role</dt>
+        <dd data-detail-role></dd>
+      </div>
+      <div>
+        <dt>Type</dt>
+        <dd data-detail-type></dd>
+      </div>
+      <div>
+        <dt>Client</dt>
+        <dd data-detail-client></dd>
+      </div>
+      <div>
+        <dt>Year</dt>
+        <dd data-detail-year></dd>
+      </div>
+    </dl>
+  </div>
+  <div class="detail-episodes" role="group" aria-label="Series episodes" hidden></div>
+  <div class="detail-gallery" aria-label="Project stills"></div>
+</aside>

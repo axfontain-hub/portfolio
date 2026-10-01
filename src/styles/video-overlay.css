@@ -1,0 +1,124 @@
+html.film-open {
+  overflow: hidden;
+}
+body :is(.film-dialog, .archive-mobile-dialog) {
+  width: min(calc(100vw - 40px), calc((100dvh - 40px) * 16 / 9));
+  max-width: none;
+  max-height: calc(100dvh - 40px);
+  padding: 0;
+  border: 0;
+  background: #111110;
+  color: #f5f4f0;
+  overflow: hidden;
+  opacity: 1;
+  transform: scale(1);
+}
+body :is(.film-dialog, .archive-mobile-dialog)[open] {
+  animation: film-enter 280ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+body :is(.film-dialog, .archive-mobile-dialog)::backdrop {
+  background: rgb(0 0 0 / 90%);
+  animation: backdrop-enter 280ms ease both;
+}
+body :is(.film-dialog, .archive-mobile-dialog).is-closing {
+  animation: film-exit 200ms ease both;
+}
+body :is(.film-dialog, .archive-mobile-dialog).is-closing::backdrop {
+  animation: backdrop-exit 200ms ease both;
+}
+body :is(.film-close, .archive-mobile-dialog [data-detail-close]) {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: rgb(0 0 0 / 60%);
+  border-radius: 50%;
+  color: inherit;
+  font: inherit;
+  font-size: 30px;
+  cursor: pointer;
+}
+body :is(.film-close, .archive-mobile-dialog [data-detail-close]):hover {
+  color: var(--accent);
+}
+.film-player,
+.film-youtube {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: #000;
+  border: 0;
+}
+.film-player[hidden],
+.film-youtube[hidden] {
+  display: none;
+}
+:is(.film-error, .archive-mobile-dialog .detail-error) {
+  position: absolute;
+  bottom: 48px;
+  left: 0;
+  right: 0;
+  background: rgb(0 0 0 / 85%);
+  padding: 16px 20px;
+  font-size: 14px;
+}
+.film-direct-link {
+  text-decoration: underline;
+}
+@keyframes film-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.975);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes film-exit {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+}
+@keyframes backdrop-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes backdrop-exit {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@media (max-width: 760px) {
+  body :is(.film-dialog, .archive-mobile-dialog) {
+    width: min(calc(100vw - 16px), calc((100dvh - 16px) * 16 / 9));
+    max-height: calc(100dvh - 16px);
+  }
+  body :is(.film-close, .archive-mobile-dialog [data-detail-close]) {
+    top: 8px;
+    right: 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body :is(.film-dialog, .archive-mobile-dialog)[open],
+  body :is(.film-dialog, .archive-mobile-dialog)::backdrop {
+    animation: none;
+  }
+}
